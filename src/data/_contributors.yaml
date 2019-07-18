@@ -88,6 +88,21 @@ jakearchibald:
   description:
     en: Human boy working on web standards at Google
 
+adamargyle:
+  name:
+    given: Adam
+    family: Argyle
+  homepage: 'https://nerdy.dev'
+  email: argyle@google.com
+  twitter: argyleink
+  github: argyleink
+  org:
+    name: Google
+    unit: Chrome
+  description:
+    en: Developer Advocate at Google
+  country: US
+
 pbakaus:
   name:
     given: Paul
@@ -179,6 +194,15 @@ ericbidelman:
   email: e.bidelman@google.com
   description:
     en: 'Engineer @ Google working on web tooling: Headless Chrome, Puppeteer, Lighthouse'
+
+jbingham:
+  name:
+    given: Jonathan
+    family: Bingham
+  github: jbingham
+  twitter: jonathanbingham
+  description:
+    en: Jonathan is a Product Manager at Google
 
 bokan:
   name:
@@ -493,6 +517,17 @@ samdutton:
   email: dutton@google.com
   description:
     en: Sam is a Developer Advocate
+
+emilaeklund:
+  name:
+    given: Emil
+    family: Eklund
+  org:
+    name: Google
+    unit: Chrome
+  description:
+    en: Chrome Rendering tech lead and manager.
+  country: US
 
 arthurevans:
   name:
@@ -940,6 +975,18 @@ brendankenny:
   email: bckenny@google.com
   description:
     en: Lighthouse Bulb Installer
+
+skikuchi:
+  name:
+    given: Satoko
+    family: Kikuchi
+  org:
+    name: Graat
+  country: JP
+  role:
+    - translator
+  github: s-kic
+  twitter: s_kic
 
 jeokrang:
   name:
@@ -1997,3 +2044,6 @@ maciejzasada:
   role:
     - author
   email: maciej@unit9.com
+
+
+
