@@ -1,26 +1,21 @@
 project_path: /web/tools/_project.yaml
 book_path: /web/tools/_book.yaml
-description: A guide on how scoring works in Lighthouse v2.
+description: How scoring works in Lighthouse
 
-{# wf_updated_on: 2018-11-04 #}
-{# wf_published_on: 2017-12-27 #}
+{# wf_updated_on: 2019-07-22 #}
+{# wf_published_on: 2018-05-04 #}
 {# wf_blink_components: N/A #}
 
-[details]: https://docs.google.com/spreadsheets/d/1dXH-bXX3gxqqpD1f7rp6ImSOhobsT1gn_GQ2fGZp8UU/edit?ts=59fb61d2#gid=0
+[details]: https://docs.google.com/spreadsheets/d/1sH_T4G_RZAg4CpcV1bT-tmUegBdBpCOOwsdzqtWnO4U/edit#gid=0
 [WikiHow]: https://www.wikihow.com/Calculate-Weighted-Average#Weighted_Averages_without_Percentages_sub
 
-# Lighthouse v2 Scoring Guide {: .page-title }
-
-Note: This guide covers how scoring worked in Lighthouse v2. See [Lighthouse Scoring Guide][v3]
-for the latest.
-
-[v3]: /web/tools/lighthouse/v3/scoring
+# Lighthouse Scoring Guide {: .page-title }
 
 The scores that you see at the top of your Lighthouse report represent the page's score for
 that particular category. This guide explains how Lighthouse calculates those scores.
 
 <figure>
-  <img src="images/category-scores.png" alt="The scores that you see next to Progressive
+  <img src="images/v5-ui.png" alt="The scores that you see next to Progressive
             Web App, Performance, Accessibility, Best Practices, and SEO at the top of your
             Lighthouse report represent your score for that category."/>
   <figcaption>
@@ -34,14 +29,15 @@ that particular category. This guide explains how Lighthouse calculates those sc
 
 Lighthouse returns a Performance score between 0 and 100. 0 is the lowest possible score. A 0
 score usually indicates an error in Lighthouse. If you see a 0 score repeatedly, please
-[file a bug on the Lighthouse repo][bug]{:.external}. 100 is the best possible score. Typically
-a score above 90 represents the top 5 percent of top-performing pages.
+[file a bug on the Lighthouse repo][bug]{:.external}. 100 is the best possible score which
+represents the 98th percentile, a top-performing site. A score of 50 represents the 75th
+percentile.
 
 [bug]: https://github.com/GoogleChrome/lighthouse/issues/new
 
 ### Which Performance audits contribute to your score {: #perf-audits }
 
-In general, only the audits in the Metrics section of the Performance category contribute
+In general, only the items in the Metrics section of the Performance category contribute
 to your score. See [Scoring Details][details]{:.external} for the complete list.
 The audits under Diagnostics and Opportunities do not contribute to your Performance score.
 
@@ -51,22 +47,22 @@ The audits under Diagnostics and Opportunities do not contribute to your Perform
 [PSI]: /web/tools/lighthouse/audits/perceptual-speed-index
 [EIL]: /web/tools/lighthouse/audits/estimated-input-latency
 
-### How each Performance audit is scored {: #perf-scoring }
+### How each Performance metric is scored {: #perf-scoring }
 
 Each Performance audit that contributes to your score has its own scoring methodology.
 Lighthouse maps each raw score to a number between 0 and 100. The scoring distribution is
 a log normal distribution derived from the performance metrics of real website performance
-data.
+data on HTTPArchive.
 
 For example, the First Meaningful Paint (FMP) audit measures when a user perceives that the
 primary content of a page is visible. The raw score for FMP represents the time duration between
 the user initiating the page load and the page rendering its primary content. Based on real
-website data, top-performing sites render FMP in about 1223ms, so that raw score is mapped to
+website data, top-performing sites render FMP in about 1,220ms, so that metric value is mapped to
 a Lighthouse score of 99.
 
 ### How the Performance score is weighted {: #perf-weighting }
 
-The audits that contribute to the Performance score are not equally weighted. See [Scoring
+The metrics that contribute to the Performance score are not equally weighted. See [Scoring
 Details][details]{:.external} to see how each Performance audit is weighted. The heavier-weighted
 audits have a larger impact on your overall Performance score. The weightings are based on
 heuristics. The Lighthouse team is working on formalizing this approach through more field data.
@@ -76,15 +72,17 @@ Without Percentages][WikiHow]{:.external} to learn how weighted averages work.
 See [Scoring Calculator][calculator]{:.external} to experiment with how getting different scores
 in each audit affects your overall Performance score.
 
-[calculator]: https://docs.google.com/spreadsheets/d/1dXH-bXX3gxqqpD1f7rp6ImSOhobsT1gn_GQ2fGZp8UU/edit?ts=59fb61d2#gid=283330180
+[calculator]: https://docs.google.com/spreadsheets/d/1sH_T4G_RZAg4CpcV1bT-tmUegBdBpCOOwsdzqtWnO4U/edit#gid=283330180
 
 ### How the Performance score is color-coded {: #perf-color-coding }
 
 The color-coding maps to these Performance score ranges:
 
-* 0 to 44 (poor): Red
-* 45 to 74 (average): Orange
-* 75 to 100 (good): Green
+* 0 to 49 (slow): Red
+* 50 to 89 (average): Orange
+* 90 to 100 (fast): Green
+
+These color buckets were revised in Lighthouse [v3.1.1](https://github.com/GoogleChrome/lighthouse/releases).
 
 ### How to reduce fluctuations in your Performance score {: #perf-consistency }
 
