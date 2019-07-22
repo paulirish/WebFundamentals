@@ -6,7 +6,8 @@ description: How scoring works in Lighthouse
 {# wf_published_on: 2018-05-04 #}
 {# wf_blink_components: N/A #}
 
-[details]: https://docs.google.com/spreadsheets/d/1sH_T4G_RZAg4CpcV1bT-tmUegBdBpCOOwsdzqtWnO4U/edit#gid=0
+[details]: https://docs.google.com/spreadsheets/d/1up5rxd4EMCoMaxH8cppcK1x76n6HLx0e7jxb0e0FXvc/edit#gid=0
+[calculator]: https://docs.google.com/spreadsheets/d/1up5rxd4EMCoMaxH8cppcK1x76n6HLx0e7jxb0e0FXvc/edit#gid=283330180
 [WikiHow]: https://www.wikihow.com/Calculate-Weighted-Average#Weighted_Averages_without_Percentages_sub
 
 # Lighthouse Scoring Guide {: .page-title }
@@ -15,31 +16,34 @@ The scores that you see at the top of your Lighthouse report represent the page'
 that particular category. This guide explains how Lighthouse calculates those scores.
 
 <figure>
-  <img src="images/v5-ui.png" alt="The scores that you see next to Progressive
+  <img src="images/v5-ui.png" alt="The scores that you see above Progressive
             Web App, Performance, Accessibility, Best Practices, and SEO at the top of your
             Lighthouse report represent your score for that category."/>
-  <figcaption>
-    <b>Figure 1</b>. The scores that you see next to <b>Progressive Web App</b>,
-    <b>Performance</b>, <b>Accessibility</b>, <b>Best Practices</b>, and <b>SEO</b> at the
-    top of your Lighthouse report represent your score for that category
-  </figcaption>
 </figure>
 
 ## The Performance score {: #perf }
 
-Lighthouse returns a Performance score between 0 and 100. 0 is the lowest possible score. A 0
-score usually indicates an error in Lighthouse. If you see a 0 score repeatedly, please
-[file a bug on the Lighthouse repo][bug]{:.external}. 100 is the best possible score which
-represents the 98th percentile, a top-performing site. A score of 50 represents the 75th
-percentile.
+Lighthouse returns a Performance score between 0 and 100. A score of `null` may be returned if there are errors within the category. 0 is the lowest possible score. 100 is the best possible ideal score (really hard to get). Any green score (90+) is considered good. Usually, any score above a 90 gets you in the top ~5% of performant webpages.
 
 [bug]: https://github.com/GoogleChrome/lighthouse/issues/new
 
 ### Which Performance audits contribute to your score {: #perf-audits }
 
-In general, only the items in the Metrics section of the Performance category contribute
-to your score. See [Scoring Details][details]{:.external} for the complete list.
-The audits under Diagnostics and Opportunities do not contribute to your Performance score.
+The performance score is determined from **the performance metrics only**. The Opportunities/Diagnostics sections do not directly contribute to the performance score. That said, improving the opportunties and diagnostics likely improve the metric values, so there is an indirect relationship.
+
+Currently in Lighthouse v5, the weighting for the Performance Score is:
+
+* 20% - First Contentful Paint
+* 6.7% - First Meaningful Paint
+* 13.3% - First CPU Idle
+* 33.3% - Time To Interactive
+* 26.7% - Speed Index
+* 0% - Max Potential First Input Delay
+
+The overall Performance score is a [weighted average][WikiHow]{:.external} of these metrics.
+
+See [Scoring Calculator][calculator]{:.external} to experiment with how getting different scores
+in each audit affects your overall Performance score.
 
 [FMP]: /web/tools/lighthouse/audits/first-meaningful-paint
 [FI]: /web/tools/lighthouse/audits/first-interactive
@@ -49,30 +53,16 @@ The audits under Diagnostics and Opportunities do not contribute to your Perform
 
 ### How each Performance metric is scored {: #perf-scoring }
 
-Each Performance audit that contributes to your score has its own scoring methodology.
-Lighthouse maps each raw score to a number between 0 and 100. The scoring distribution is
+Lighthouse maps each metric value to a number between 0 and 100. The scoring distribution is
 a log normal distribution derived from the performance metrics of real website performance
 data on HTTPArchive.
 
-For example, the First Meaningful Paint (FMP) audit measures when a user perceives that the
-primary content of a page is visible. The raw score for FMP represents the time duration between
+For example, First Meaningful Paint (FMP) measures when a user perceives that the
+primary content of a page is visible. The metric value for FMP represents the time duration between
 the user initiating the page load and the page rendering its primary content. Based on real
 website data, top-performing sites render FMP in about 1,220ms, so that metric value is mapped to
-a Lighthouse score of 99.
+a score of 99.
 
-### How the Performance score is weighted {: #perf-weighting }
-
-The metrics that contribute to the Performance score are not equally weighted. See [Scoring
-Details][details]{:.external} to see how each Performance audit is weighted. The heavier-weighted
-audits have a larger impact on your overall Performance score. The weightings are based on
-heuristics. The Lighthouse team is working on formalizing this approach through more field data.
-
-The overall Performance score is a weighted average of these audits. See [Weighted Averages
-Without Percentages][WikiHow]{:.external} to learn how weighted averages work.
-See [Scoring Calculator][calculator]{:.external} to experiment with how getting different scores
-in each audit affects your overall Performance score.
-
-[calculator]: https://docs.google.com/spreadsheets/d/1sH_T4G_RZAg4CpcV1bT-tmUegBdBpCOOwsdzqtWnO4U/edit#gid=283330180
 
 ### How the Performance score is color-coded {: #perf-color-coding }
 
@@ -81,8 +71,6 @@ The color-coding maps to these Performance score ranges:
 * 0 to 49 (slow): Red
 * 50 to 89 (average): Orange
 * 90 to 100 (fast): Green
-
-These color buckets were revised in Lighthouse [v3.1.1](https://github.com/GoogleChrome/lighthouse/releases).
 
 ### How to reduce fluctuations in your Performance score {: #perf-consistency }
 
@@ -97,8 +85,7 @@ running Lighthouse from a continuous integration system, or from a hosted servic
 
 ## The Progressive Web App score {: #pwa }
 
-Lighthouse returns a Progressive Web App (PWA) score between 0 and 100. 0 is the worst possible
-score, and 100 is the best.
+Scoring of the Progressive Web App (PWA) Category is handled a little differently. While there is a numeric score, the audit groups are most important.
 
 The PWA audits are based on the [Baseline PWA Checklist][checklist],
 which lists 14 requirements. Lighthouse has automated audits for 11 of the 14 requirements. The
