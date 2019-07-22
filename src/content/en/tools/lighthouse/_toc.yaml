@@ -3,10 +3,10 @@ toc:
   path: /web/tools/lighthouse/
 - title: Scoring Guides
   section:
-  - title: Lighthouse v2 Scoring Guide
+  - title: Lighthouse Scoring Guide
     path: /web/tools/lighthouse/scoring
   - title: Lighthouse v3 Scoring Guide
-    path: /web/tools/lighthouse/v3/scoring
+    path: /web/tools/lighthouse/v3/scoring-v3
 - title: Lighthouse v3 Migration Guide
   path: /web/tools/lighthouse/v3/migration
 - heading: Audit References

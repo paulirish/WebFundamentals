@@ -99,6 +99,9 @@ redirects:
 - from: /web/tools/lighthouse/audits/
   to: /web/tools/lighthouse/
 
+- from: /web/tools/lighthouse/v3/scoring
+  to: /web/tools/lighthouse/scoring
+
 - from: /web/tools/chrome-devtools/evaluate-performance/rail
   to: /web/fundamentals/performance/rail
 

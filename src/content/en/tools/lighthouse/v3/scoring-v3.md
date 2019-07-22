@@ -2,7 +2,7 @@ project_path: /web/tools/_project.yaml
 book_path: /web/tools/_book.yaml
 description: How scoring works in Lighthouse
 
-{# wf_updated_on: 2018-11-04 #}
+{# wf_updated_on: 2019-07-22 #}
 {# wf_published_on: 2018-05-04 #}
 {# wf_blink_components: N/A #}
 
