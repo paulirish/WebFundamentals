@@ -2,7 +2,7 @@ project_path: /web/tools/_project.yaml
 book_path: /web/tools/_book.yaml
 description: How scoring works in Lighthouse
 
-{# wf_updated_on: 2019-07-22 #}
+{# wf_updated_on: 2019-11-06 #}
 {# wf_published_on: 2018-05-04 #}
 {# wf_blink_components: N/A #}
 
@@ -27,7 +27,7 @@ Lighthouse returns a Performance score between 0 and 100. A score of `null` may 
 
 [bug]: https://github.com/GoogleChrome/lighthouse/issues/new
 
-### Which Performance audits contribute to your score {: #perf-audits }
+### What comprises your Performance score {: #perf-score }
 
 The performance score is determined from **the performance metrics only**. The Opportunities/Diagnostics sections do not directly contribute to the performance score. That said, improving the opportunties and diagnostics likely improve the metric values, so there is an indirect relationship.
 
